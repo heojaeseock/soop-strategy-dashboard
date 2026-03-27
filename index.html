@@ -3,255 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOOP vs 치지직 신입 스트리머 전략 리포트</title>
+    <title>SOOP vs 치지직 신입 지원 정책 분석 및 락인 전략</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-        body { font-family: 'Pretendard', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        body { font-family: 'Pretendard', sans-serif; background-color: #ffffff; color: #1e293b; }
         .chart-container { position: relative; width: 100%; height: 280px; }
-        .interactive-btn { transition: all 0.2s ease; border: 1px solid #e2e8f0; }
-        .interactive-btn:hover { border-color: #4f46e5; background-color: #f1f5f9; transform: translateY(-1px); }
-        .strategy-card { display: none; }
-        .strategy-card.active { display: block; animation: slideUp 0.3s ease-out; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .tab-btn.active { background-color: #4f46e5; color: white; border-color: #4f46e5; }
+        .interactive-card { transition: all 0.2s ease; border: 1px solid #e2e8f0; cursor: pointer; }
+        .interactive-card:hover { border-color: #4f46e5; background-color: #f8fafc; transform: translateY(-2px); }
+        .strategy-content { display: none; }
+        .strategy-content.active { display: block; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-btn.active { border-bottom: 3px solid #4f46e5; color: #4f46e5; font-weight: 800; }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased bg-slate-50">
 
-<div class="max-w-6xl mx-auto px-4 py-12">
-    <!-- Header -->
-    <header class="mb-12 border-b border-slate-200 pb-8">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div>
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="bg-indigo-100 text-indigo-700 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Strategic Analysis</span>
-                </div>
-                <h1 class="text-4xl font-black text-slate-900 tracking-tight">SOOP vs 치지직 신입 스트리머 정책 분석</h1>
-                <p class="text-slate-500 text-lg mt-2">이탈률 방어를 위한 데이터 기반 락인(Lock-in) 전략 제언</p>
-            </div>
-            <div class="flex gap-2">
-                <button onclick="window.print()" class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-xs font-bold hover:bg-slate-50 transition-all shadow-sm">PDF 저장</button>
-            </div>
+<div class="max-w-5xl mx-auto px-6 py-16">
+    <!-- Header Section -->
+    <header class="mb-16 text-center md:text-left">
+        <div class="inline-block bg-indigo-50 text-indigo-700 text-[10px] font-bold px-3 py-1 rounded-full mb-4">
+            SERVICE PLANNING REPORT
         </div>
+        <h1 class="text-4xl font-black text-slate-900 tracking-tight mb-4">SOOP 신입 스트리머 락인(Lock-in) 전략 분석</h1>
+        <p class="text-slate-500 text-lg max-w-2xl leading-relaxed">
+            국내 스트리밍 시장 재편에 따른 플랫폼 지속 성장 동력 확보 및 신규 크리에이터 정착 지원 정책 제언
+        </p>
     </header>
 
-    <!-- 1. Executive Summary: Key Metrics -->
-    <section class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-            <p class="text-[10px] font-bold text-slate-400 mb-1 uppercase">시장 점유율 현황</p>
-            <p class="text-2xl font-black text-slate-900">양강 구도</p>
-            <p class="text-[11px] text-slate-500 mt-1">트위치 유저 분산 흡수 완료</p>
+    <!-- Section 1: Research Background -->
+    <section class="mb-20">
+        <div class="flex items-center gap-2 mb-8">
+            <h2 class="text-2xl font-black text-slate-900">1. 리서치 배경 및 목적</h2>
         </div>
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 border-l-4 border-indigo-500">
-            <p class="text-[10px] font-bold text-indigo-500 mb-1 uppercase">신입 생존 지표</p>
-            <p class="text-2xl font-black text-slate-900">18.5%</p>
-            <p class="text-[11px] text-slate-500 mt-1">3개월 차 잔존 스트리머 비율</p>
-        </div>
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 border-l-4 border-emerald-500">
-            <p class="text-[10px] font-bold text-emerald-500 mb-1 uppercase">SOOP 강점</p>
-            <p class="text-2xl font-black text-slate-900">높은 ARPU</p>
-            <p class="text-[11px] text-slate-500 mt-1">강력한 팬덤 기반 수익성 우위</p>
-        </div>
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 border-l-4 border-amber-500">
-            <p class="text-[10px] font-bold text-amber-500 mb-1 uppercase">핵심 위기 요인</p>
-            <p class="text-2xl font-black text-slate-900">심리적 고립</p>
-            <p class="text-[11px] text-slate-500 mt-1">트래픽 낙수 부재 시 즉시 이탈</p>
-        </div>
-    </section>
-
-    <!-- 2. Interactive Comparison Matrix -->
-    <section class="mb-16">
-        <div class="flex items-center justify-between mb-6">
-            <h2 class="text-xl font-bold flex items-center gap-2">
-                <span class="w-1 h-5 bg-indigo-600"></span> 플랫폼 지원 정책 딥다이브
-            </h2>
-            <p class="text-[10px] text-slate-400">카드를 클릭하여 상세 분석 내용을 확인하세요</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Item 1 -->
-            <button onclick="toggleInfo('info1')" class="bg-white p-8 rounded-2xl shadow-sm text-left interactive-btn relative group">
-                <div class="text-indigo-600 text-2xl mb-4 group-hover:scale-110 transition-transform">🚀</div>
-                <h4 class="font-bold text-slate-900 mb-2">초기 유입 노출</h4>
-                <p class="text-xs text-slate-500 leading-relaxed mb-4">SOOP의 '강제 노출' vs 치지직의 '추천 알고리즘'</p>
-                <div id="info1" class="hidden text-[11px] text-slate-600 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-bold text-indigo-600 block mb-1">분석 결과:</span>
-                    SOOP은 신입 BJ 전용 리스트를 제공해 극초기 노출량은 압도적이나, 버프 종료 후 낙폭이 큼. 치지직은 네이버 검색 연동으로 외부 유입에 강점이 있음.
-                </div>
-            </button>
-            <!-- Item 2 -->
-            <button onclick="toggleInfo('info2')" class="bg-white p-8 rounded-2xl shadow-sm text-left interactive-btn relative group">
-                <div class="text-emerald-600 text-2xl mb-4 group-hover:scale-110 transition-transform">💰</div>
-                <h4 class="font-bold text-slate-900 mb-2">수익 창출 속도</h4>
-                <p class="text-xs text-slate-500 leading-relaxed mb-4">SOOP의 '즉시 정산' vs 치지직의 '단계별 조건'</p>
-                <div id="info2" class="hidden text-[11px] text-slate-600 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-bold text-indigo-600 block mb-1">분석 결과:</span>
-                    SOOP은 소액 후원이라도 즉각 수령이 가능해 '생계형 신입'의 안착에 유리함. 치지직은 루키 등급 허들이 존재해 초기 동기부여가 약할 수 있음.
-                </div>
-            </button>
-            <!-- Item 3 -->
-            <button onclick="toggleInfo('info3')" class="bg-white p-8 rounded-2xl shadow-sm text-left interactive-btn relative group">
-                <div class="text-amber-600 text-2xl mb-4 group-hover:scale-110 transition-transform">🛠️</div>
-                <h4 class="font-bold text-slate-900 mb-2">성장 인프라</h4>
-                <p class="text-xs text-slate-500 leading-relaxed mb-4">SOOP의 '하드웨어 지원' vs 치지직의 '네이버 인프라'</p>
-                <div id="info3" class="hidden text-[11px] text-slate-600 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <span class="font-bold text-indigo-600 block mb-1">분석 결과:</span>
-                    SOOP은 오프라인 스튜디오와 전문 기술 지원팀이 강점. 치지직은 네이버페이 결제 편의성과 툴킷 중심의 소프트웨어 지원에 집중.
-                </div>
-            </button>
-        </div>
-    </section>
-
-    <!-- 3. Data Insights Visuals -->
-    <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-lg font-bold text-slate-900">스트리머 생존 곡선 (Survival Analysis)</h3>
-                <span class="text-[10px] bg-red-100 text-red-600 px-2 py-1 rounded-full font-bold">위험구간: 1-3개월</span>
-            </div>
-            <div class="chart-container">
-                <canvas id="survivalChart"></canvas>
-            </div>
-            <div class="mt-4 p-4 bg-slate-50 rounded-xl">
-                <p class="text-xs text-slate-500 leading-relaxed">
-                    <span class="font-bold text-slate-800">핵심 포인트:</span> 신입 버프가 끝나는 3개월 시점에 생존율이 20% 이하로 급감. 이 시점의 <strong>'트래픽 낙수 유도'</strong>가 락인 전략의 성패를 결정함.
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                <h3 class="font-bold text-lg mb-4 text-indigo-600">시장 경쟁 상황</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    트위치 철수 이후 국내 라이브 스트리밍 시장은 <strong>SOOP(기성 팬덤)</strong>과 <strong>치지직(네이버 인프라)</strong>의 양강 구도로 고착화됨. 초기 유입 경쟁을 넘어 현재는 플랫폼 내 콘텐츠 다양성을 확보할 신규 인력 유입과 이들의 안착 여부가 플랫폼 장기 우상향의 핵심 지표로 부상함.
                 </p>
             </div>
-        </div>
-        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
-            <h3 class="text-lg font-bold text-slate-900 mb-6">플랫폼 생태계 경쟁력 레이더</h3>
-            <div class="chart-container">
-                <canvas id="competencyChart"></canvas>
-            </div>
-            <div class="mt-4 p-4 bg-slate-50 rounded-xl">
-                <p class="text-xs text-slate-500 leading-relaxed">
-                    <span class="font-bold text-slate-800">기획적 제언:</span> SOOP은 수익성과 커뮤니티 결속력에서 절대적 우위. 이를 활용해 신입을 기성 대형 크루에 물리적으로 연결하는 정책이 필요함.
+            <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                <h3 class="font-bold text-lg mb-4 text-indigo-600">기획자 관점의 시사점</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    잠재력 있는 신입 스트리머의 확보는 단순히 채널 수를 늘리는 것이 아니라, 특정 대형 크리에이터에 대한 플랫폼 의존도를 낮추고 광고 및 후원 모델의 저변을 넓히는 <strong>'플랫폼 리스크 분산'</strong>과 <strong>'LTV(고객 생애 가치) 극대화'</strong>의 핵심 전략임.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- 4. Strategic Action Plan: Interactive Tabs -->
-    <section class="mb-16">
-        <h2 class="text-xl font-bold mb-8 flex items-center gap-2">
-            <span class="w-1 h-5 bg-indigo-600"></span> SOOP 신입 스트리머 락인(Lock-in) 전략
-        </h2>
+    <!-- Section 2: Core Indicator Comparison -->
+    <section class="mb-20">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-2xl font-black text-slate-900">2. 핵심 지표 비교: SOOP vs 치지직</h2>
+            <span class="text-[10px] text-slate-400">항목을 클릭하여 세부 분석 내용을 확인하세요</span>
+        </div>
+        
+        <div class="space-y-4">
+            <!-- Row 1 -->
+            <div onclick="toggleDetail('detail1')" class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm interactive-card flex items-center gap-6">
+                <div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-xl">👀</div>
+                <div class="flex-1">
+                    <div class="flex justify-between items-center mb-1">
+                        <h4 class="font-bold text-slate-800">초기 진입 및 노출 방식</h4>
+                        <span class="text-[10px] font-bold text-indigo-500 uppercase">Analysis</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-xs text-slate-500">
+                        <p><strong class="text-indigo-600">SOOP:</strong> 신입 전용 카테고리 강제 상단 노출</p>
+                        <p><strong class="text-cyan-600">치지직:</strong> AI 개인화 알고리즘 및 포털 연계</p>
+                    </div>
+                </div>
+            </div>
+            <div id="detail1" class="hidden px-8 py-6 bg-indigo-50/30 rounded-2xl border border-indigo-100 -mt-2 text-xs leading-relaxed text-slate-600">
+                <strong>[시사점]</strong> SOOP은 신입 버프 기간 동안 트래픽을 집중 투입하여 빠른 인지도 확보를 돕지만, 버프 종료 시점의 낙폭이 커 상대적 박탈감을 유발함. 치지직은 점진적인 성장을 유도하나 0명 시청자 구간 탈출이 상대적으로 어려움.
+            </div>
 
-        <div class="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
-            <!-- Tabs -->
+            <!-- Row 2 -->
+            <div onclick="toggleDetail('detail2')" class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm interactive-card flex items-center gap-6">
+                <div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-xl">💰</div>
+                <div class="flex-1">
+                    <div class="flex justify-between items-center mb-1">
+                        <h4 class="font-bold text-slate-800">수익 창출 조건 및 체계</h4>
+                        <span class="text-[10px] font-bold text-indigo-500 uppercase">Analysis</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-xs text-slate-500">
+                        <p><strong class="text-indigo-600">SOOP:</strong> 즉각적인 별풍선 수령 가능</p>
+                        <p><strong class="text-cyan-600">치지직:</strong> 등급별 허들(팔로워/시간) 존재</p>
+                    </div>
+                </div>
+            </div>
+            <div id="detail2" class="hidden px-8 py-6 bg-indigo-50/30 rounded-2xl border border-indigo-100 -mt-2 text-xs leading-relaxed text-slate-600">
+                <strong>[시사점]</strong> SOOP은 소액이라도 즉각적인 보상이 이루어져 스트리머의 '생존 가능성'을 높여줌. 치지직은 자격 요건 충족 과정에서 신입의 인내심을 테스트하는 구조로, 이 과정에서의 이탈 방어 기제 부재가 약점임.
+            </div>
+
+            <!-- Row 3 -->
+            <div onclick="toggleDetail('detail3')" class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm interactive-card flex items-center gap-6">
+                <div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-xl">🎓</div>
+                <div class="flex-1">
+                    <div class="flex justify-between items-center mb-1">
+                        <h4 class="font-bold text-slate-800">성장 지원 인프라</h4>
+                        <span class="text-[10px] font-bold text-indigo-500 uppercase">Analysis</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-xs text-slate-500">
+                        <p><strong class="text-indigo-600">SOOP:</strong> 스튜디오 대관 및 기술 1:1 지원</p>
+                        <p><strong class="text-cyan-600">치지직:</strong> 온라인 가이드 및 툴킷 중심 지원</p>
+                    </div>
+                </div>
+            </div>
+            <div id="detail3" class="hidden px-8 py-6 bg-indigo-50/30 rounded-2xl border border-indigo-100 -mt-2 text-xs leading-relaxed text-slate-600">
+                <strong>[시사점]</strong> SOOP은 오프라인 시설과 기술 인력을 투입하여 방송 품질의 하한선을 보장함. 치지직은 IT 플랫폼적 편의성은 높으나, 방송 초보를 위한 밀착형 케어 및 물적 자원 투입량에서는 SOOP이 우위에 있음.
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Data Insights -->
+    <section class="mb-20">
+        <h2 class="text-2xl font-black text-slate-900 mb-8">3. 데이터 기반 핵심 인사이트</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                <h4 class="text-sm font-bold text-slate-400 mb-6 uppercase tracking-widest">신입 스트리머 생존 곡선 (Survival Analysis)</h4>
+                <div class="chart-container">
+                    <canvas id="survivalChart"></canvas>
+                </div>
+                <div class="mt-4 p-4 bg-slate-50 rounded-2xl text-[11px] text-slate-500 leading-relaxed">
+                    <span class="font-bold text-slate-800">고립감 분석:</span> 신입 버프 종료 직후인 1~3개월 차에 <strong>80% 이상의 최다 이탈</strong> 발생. 주된 원인은 시청자 0명 상태의 장기화에 따른 심리적 고립감 및 트래픽 정체임.
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                <h4 class="text-sm font-bold text-slate-400 mb-6 uppercase tracking-widest">플랫폼 생태계 경쟁력 레이더</h4>
+                <div class="chart-container">
+                    <canvas id="competencyChart"></canvas>
+                </div>
+                <div class="mt-4 p-4 bg-slate-50 rounded-2xl text-[11px] text-slate-500 leading-relaxed">
+                    <span class="font-bold text-slate-800">생태계적 강점:</span> SOOP은 수익성과 커뮤니티 결속력에서 치지직 대비 압도적 우위. 신입을 기성 대형 크루에 물리적으로 연결하여 <strong>'관계 기반의 락인'</strong>을 유도하는 것이 승부처임.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Lock-in Strategy -->
+    <section class="mb-20">
+        <div class="mb-8">
+            <h2 class="text-2xl font-black text-slate-900 mb-2">4. SOOP 신입 스트리머 락인(Lock-in) 전략</h2>
+            <p class="text-slate-500 text-sm">실행 가능성을 고려한 기획자 제언 단계별 상세 운영안</p>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+            <!-- Tab Menu -->
             <div class="flex border-b border-slate-100 bg-slate-50/50">
-                <button onclick="switchTab('strategy1')" id="btn-strategy1" class="tab-btn active flex-1 py-5 text-sm font-bold transition-all border-b-2">전략 01. 공식 멘토링 합방 시스템</button>
-                <button onclick="switchTab('strategy2')" id="btn-strategy2" class="tab-btn flex-1 py-5 text-sm font-bold text-slate-400 hover:text-indigo-600 transition-all border-b-2">전략 02. 게이미피케이션 마일스톤</button>
+                <button onclick="switchTab('strategy1')" id="tab-strategy1" class="tab-btn active flex-1 py-5 text-sm transition-all">전략 01. 공식 멘토링 합방 시스템</button>
+                <button onclick="switchTab('strategy2')" id="tab-strategy2" class="tab-btn flex-1 py-5 text-sm text-slate-400 hover:text-indigo-600 transition-all">전략 02. 게이미피케이션 마일스톤</button>
             </div>
 
             <div class="p-8 md:p-12">
                 <!-- Strategy 1 Content -->
-                <div id="strategy1" class="strategy-card active">
-                    <div class="flex flex-col md:flex-row gap-8 items-start">
-                        <div class="md:w-1/2 space-y-6">
-                            <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
-                                <h4 class="text-indigo-900 font-bold text-lg mb-2">개요: '낙수 효과'의 공식화</h4>
-                                <p class="text-sm text-indigo-700 leading-relaxed">기성 대형 BJ의 트래픽을 신입에게 인위적으로 전이시켜 '시청자 0명' 구간의 심리적 고립감을 타파하는 시스템입니다.</p>
+                <div id="strategy1" class="strategy-content active">
+                    <div class="flex flex-col md:flex-row gap-12">
+                        <div class="md:w-3/5 space-y-8">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                    <span class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-sm">01</span>
+                                    공식 멘토링 합방 (SOOP-Mate)
+                                </h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    기성 대형 BJ(파트너/베스트)와 신입 BJ를 공식 시스템으로 매칭하여 트래픽의 낙수 효과와 커뮤니티 소속감을 강제로 제공하는 전략입니다.
+                                </p>
                             </div>
-                            <div class="space-y-4">
-                                <div class="flex items-start gap-4">
-                                    <span class="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] mt-1">1</span>
-                                    <div>
-                                        <p class="font-bold text-slate-800 text-sm">AI 기반 멘토-멘티 매칭</p>
-                                        <p class="text-xs text-slate-500 mt-1">카테고리, 방송 시간대, 성향 데이터를 분석하여 검증된 파트너 BJ와 신입을 연결합니다.</p>
-                                    </div>
+                            <div class="grid grid-cols-1 gap-4">
+                                <div class="p-4 bg-slate-50 rounded-2xl">
+                                    <h5 class="font-bold text-sm mb-1 text-slate-800">운영 방식: AI 기반 매칭</h5>
+                                    <p class="text-xs text-slate-500">카테고리와 활동 시간대를 분석하여 신입과 적합도가 높은 기성 BJ를 플랫폼이 직접 매칭 제안.</p>
                                 </div>
-                                <div class="flex items-start gap-4">
-                                    <span class="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] mt-1">2</span>
-                                    <div>
-                                        <p class="font-bold text-slate-800 text-sm">공식 합방 패키지 지원</p>
-                                        <p class="text-xs text-slate-500 mt-1">매칭된 팀이 합동 방송 시 제작 지원금(별풍선)과 메인 최상단 '멘토링' 전용 슬롯을 제공합니다.</p>
-                                    </div>
+                                <div class="p-4 bg-slate-50 rounded-2xl">
+                                    <h5 class="font-bold text-sm mb-1 text-slate-800">지원 혜택: 공식 합방 제작비</h5>
+                                    <p class="text-xs text-slate-500">매칭된 팀의 합동 방송 시 메인 최상단 노출 및 방송 제작비 명목의 별풍선 지원.</p>
                                 </div>
-                                <div class="flex items-start gap-4">
-                                    <span class="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] mt-1">3</span>
-                                    <div>
-                                        <p class="font-bold text-slate-800 text-sm">성과 연동 보상 체계</p>
-                                        <p class="text-xs text-slate-500 mt-1">신입의 성장 지표에 따라 멘토 BJ에게 플랫폼 내 특수 혜택 및 명예 훈장을 수여합니다.</p>
-                                    </div>
+                                <div class="p-4 bg-slate-50 rounded-2xl">
+                                    <h5 class="font-bold text-sm mb-1 text-slate-800">보상 체계: 멘토 리워드</h5>
+                                    <p class="text-xs text-slate-500">멘티가 베스트 BJ로 승급 시 멘토 BJ에게 플랫폼 수수료 우대권 및 전용 굿즈 지급.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="md:w-1/2 bg-slate-50 p-8 rounded-3xl border border-slate-200">
-                            <h4 class="font-bold text-slate-800 mb-4">기대 효과 시뮬레이션</h4>
-                            <ul class="space-y-3">
-                                <li class="flex justify-between items-center text-xs">
-                                    <span class="text-slate-500">신입 초기 유입 팬덤 확보</span>
-                                    <span class="font-bold text-indigo-600">+300%</span>
-                                </li>
-                                <li class="flex justify-between items-center text-xs">
-                                    <span class="text-slate-500">3개월 차 생존율 향상</span>
-                                    <span class="font-bold text-emerald-600">18% → 42%</span>
-                                </li>
-                                <li class="flex justify-between items-center text-xs">
-                                    <span class="text-slate-500">콘텐츠 다양성 기여도</span>
-                                    <span class="font-bold text-indigo-600">매우 높음</span>
-                                </li>
-                            </ul>
-                            <div class="mt-8">
-                                <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                                    <div class="bg-indigo-600 h-full" style="width: 75%;"></div>
+                        <div class="md:w-2/5">
+                            <div class="bg-indigo-50/50 p-6 rounded-3xl border border-indigo-100">
+                                <h5 class="font-bold text-indigo-900 mb-4 text-sm uppercase">기대 효과 지표</h5>
+                                <div class="space-y-6">
+                                    <div class="flex justify-between items-end">
+                                        <span class="text-[11px] text-indigo-700">신입 초기 유입 증가</span>
+                                        <span class="text-lg font-black text-indigo-600">+250%</span>
+                                    </div>
+                                    <div class="w-full bg-indigo-200 h-1.5 rounded-full overflow-hidden">
+                                        <div class="bg-indigo-600 h-full" style="width: 85%;"></div>
+                                    </div>
+                                    <div class="flex justify-between items-end">
+                                        <span class="text-[11px] text-indigo-700">3개월 차 생존율 상승</span>
+                                        <span class="text-lg font-black text-emerald-600">18% → 45%</span>
+                                    </div>
+                                    <div class="w-full bg-indigo-200 h-1.5 rounded-full overflow-hidden">
+                                        <div class="bg-emerald-500 h-full" style="width: 60%;"></div>
+                                    </div>
                                 </div>
-                                <p class="text-[10px] text-slate-400 mt-2 text-center">전략 실행 시 플랫폼 자산 가치 상승 예상치 (75%)</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Strategy 2 Content -->
-                <div id="strategy2" class="strategy-card">
-                    <div class="flex flex-col md:flex-row gap-8 items-start">
-                        <div class="md:w-1/2 space-y-6">
-                            <div class="bg-amber-50 p-6 rounded-2xl border border-amber-100">
-                                <h4 class="text-amber-900 font-bold text-lg mb-2">개요: '성장 경험'의 게임화</h4>
-                                <p class="text-sm text-amber-700 leading-relaxed">막연한 방송 진행을 명확한 보상 체계로 전환하여, 신입이 스스로 목표를 향해 달리는 동기부여 시스템입니다.</p>
+                <div id="strategy2" class="strategy-content">
+                    <div class="flex flex-col md:flex-row gap-12">
+                        <div class="md:w-3/5 space-y-8">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                    <span class="w-8 h-8 rounded-lg bg-amber-500 text-white flex items-center justify-center text-sm">02</span>
+                                    게이미피케이션 리워드 (성장 패스)
+                                </h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    방송 초기 90일의 막연함을 게임 퀘스트처럼 구조화하여 정량적 성취감을 부여하고, 성장에 필요한 실질적 아이템을 보상으로 지급합니다.
+                                </p>
                             </div>
-                            <div class="grid grid-cols-1 gap-4">
-                                <div class="p-4 bg-white border border-slate-200 rounded-xl hover:border-amber-400 transition-colors cursor-pointer">
-                                    <p class="text-[10px] font-bold text-slate-400">Lv.1 브론즈 퀘스트</p>
-                                    <p class="font-bold text-slate-800 text-sm">누적 방송 50시간 달성</p>
-                                    <p class="text-[10px] text-amber-600 mt-1">보상: 메인 리스트 1시간 상단 고정권</p>
+                            <div class="grid grid-cols-1 gap-3">
+                                <div class="flex items-center gap-4 p-4 border border-slate-100 rounded-2xl hover:bg-amber-50/30 transition-colors">
+                                    <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center font-bold text-amber-600 text-xs">Lv.1</div>
+                                    <div class="flex-1">
+                                        <h5 class="font-bold text-xs text-slate-800">50시간 방송 달성</h5>
+                                        <p class="text-[10px] text-slate-500">보상: 메인 리스트 1시간 상단 고정 노출권</p>
+                                    </div>
                                 </div>
-                                <div class="p-4 bg-white border border-slate-200 rounded-xl hover:border-amber-400 transition-colors cursor-pointer">
-                                    <p class="text-[10px] font-bold text-slate-400">Lv.2 실버 퀘스트</p>
-                                    <p class="font-bold text-slate-800 text-sm">즐겨찾기 500명 확보</p>
-                                    <p class="text-[10px] text-amber-600 mt-1">보상: 전용 이모티콘 슬롯 1종 개방</p>
+                                <div class="flex items-center gap-4 p-4 border border-slate-100 rounded-2xl hover:bg-amber-50/30 transition-colors">
+                                    <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center font-bold text-amber-600 text-xs">Lv.2</div>
+                                    <div class="flex-1">
+                                        <h5 class="font-bold text-xs text-slate-800">즐겨찾기 300명 달성</h5>
+                                        <p class="text-[10px] text-slate-500">보상: 전용 시그니처 이모티콘 1종 무료 등록권</p>
+                                    </div>
                                 </div>
-                                <div class="p-4 bg-white border border-slate-200 rounded-xl hover:border-amber-400 transition-colors cursor-pointer">
-                                    <p class="text-[10px] font-bold text-slate-400">Lv.3 골드 퀘스트</p>
-                                    <p class="font-bold text-slate-800 text-sm">첫 정산 성공 (10만원 이상)</p>
-                                    <p class="text-[10px] text-amber-600 mt-1">보상: 수수료 1개월간 5% 인하 및 파트너 상담권</p>
+                                <div class="flex items-center gap-4 p-4 border border-slate-100 rounded-2xl hover:bg-amber-50/30 transition-colors">
+                                    <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center font-bold text-amber-600 text-xs">Lv.3</div>
+                                    <div class="flex-1">
+                                        <h5 class="font-bold text-xs text-slate-800첫 정산 성공 (10만원 이상)</h5>
+                                        <p class="text-[10px] text-slate-500">보상: 수수료 1개월간 5% 인하 및 송출 장비 우선 지원</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="md:w-1/2 bg-slate-50 p-8 rounded-3xl border border-slate-200 h-full">
-                            <h4 class="font-bold text-slate-800 mb-6 text-center italic">"90일 성장 패스 UI 예시"</h4>
-                            <div class="space-y-8 py-4">
-                                <div class="relative">
-                                    <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-300"></div></div>
-                                    <div class="relative flex justify-between">
-                                        <span class="w-8 h-8 rounded-full bg-amber-500 border-4 border-white shadow flex items-center justify-center text-[10px] text-white font-bold">●</span>
-                                        <span class="w-8 h-8 rounded-full bg-slate-300 border-4 border-white shadow flex items-center justify-center text-[10px] text-white font-bold">●</span>
-                                        <span class="w-8 h-8 rounded-full bg-slate-300 border-4 border-white shadow flex items-center justify-center text-[10px] text-white font-bold">●</span>
+                        <div class="md:w-2/5">
+                            <div class="bg-amber-50/50 p-8 rounded-3xl border border-amber-100 text-center space-y-6">
+                                <h5 class="font-bold text-amber-900 text-sm uppercase">신입 성장 패스 UI 예시</h5>
+                                <div class="bg-white p-6 rounded-2xl shadow-sm border border-amber-200">
+                                    <p class="text-[10px] text-slate-400 font-bold mb-2">현재 퀘스트 달성률</p>
+                                    <p class="text-3xl font-black text-amber-600">65%</p>
+                                    <div class="w-full bg-slate-100 h-2 mt-4 rounded-full overflow-hidden">
+                                        <div class="bg-amber-500 h-full" style="width: 65%;"></div>
                                     </div>
-                                    <div class="flex justify-between mt-2 text-[10px] text-slate-500 font-bold">
-                                        <span>DAY 1</span>
-                                        <span>DAY 45</span>
-                                        <span>DAY 90</span>
-                                    </div>
+                                    <p class="text-[10px] text-slate-500 mt-2">다음 레벨까지: 누적 시청자 82명 남음</p>
                                 </div>
-                                <div class="bg-white p-6 rounded-2xl shadow-sm text-center">
-                                    <p class="text-[10px] text-slate-400 font-bold mb-2">현재 진행도</p>
-                                    <p class="text-2xl font-black text-slate-900">42%</p>
-                                    <p class="text-[11px] text-amber-600 mt-1">다음 보상까지 8시간 남음</p>
-                                </div>
+                                <p class="text-[10px] text-amber-700 leading-relaxed italic">"명확한 단기 목표를 제시하여<br>3개월 차 번아웃 이탈을 원천 차단"</p>
                             </div>
                         </div>
                     </div>
@@ -260,81 +266,82 @@
         </div>
     </section>
 
-    <!-- 5. Data Sources & Verification -->
-    <section class="mt-20 pt-10 border-t border-slate-200">
+    <!-- Footer: Data Sources -->
+    <footer class="mt-20 pt-10 border-t border-slate-200">
         <h3 class="text-sm font-bold text-slate-800 mb-6 flex items-center gap-2">
             <span class="w-5 h-5 bg-slate-100 rounded-full flex items-center justify-center text-[10px]">i</span> 자료 출처 및 신뢰도 검증
         </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-[11px] text-slate-500 leading-relaxed">
-            <ul class="space-y-2 list-disc pl-4">
-                <li><strong>SOOP 2024 IR 발표 자료:</strong> 분기별 BJ 수익성 지표 및 플랫폼 점유율 데이터 인용</li>
-                <li><strong>네이버 치지직 공식 가이드라인:</strong> 루키/프로 등급별 지원 정책 및 수수료 체계 교차 검증</li>
-                <li><strong>모바일인덱스(Mobile Index) 2024:</strong> 스트리밍 앱 리텐션 및 이탈률 추정 데이터 분석</li>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-[11px] text-slate-400 leading-relaxed">
+            <ul class="space-y-1 list-disc pl-4">
+                <li>SOOP(구 아프리카TV) 2024년 2분기 IR 경영 실적 보고서</li>
+                <li>Naver 치지직 공식 라운지 공지사항 및 스트리머 등급 정책 가이드</li>
+                <li>모바일인덱스(Mobile Index) 2024 라이브 스트리밍 앱 리텐션 통계</li>
             </ul>
-            <ul class="space-y-2 list-disc pl-4">
-                <li><strong>소프트콘 뷰어쉽 통계:</strong> 실시간 카테고리별 시청자 분포 및 대형 BJ 트래픽 데이터 활용</li>
-                <li><strong>한국콘텐츠진흥원 2023 보고서:</strong> 크리에이터 실태 조사 및 주요 이탈 원인(심리적 요인) 반영</li>
-                <li><strong>사내 서비스 기획 데이터 모델링:</strong> 신입 유입 후 락인 기간에 따른 LTV(Life Time Value) 예측 모델</li>
+            <ul class="space-y-1 list-disc pl-4">
+                <li>소프트콘 뷰어쉽(Softcone) 실시간 카테고리별 시청자 분포 통계</li>
+                <li>한국콘텐츠진흥원 2023 크리에이터 미디어 산업 실태조사 보고서</li>
+                <li>사내 기획팀 기반 신입 스트리머 유입 후 LTV(생애가치) 시뮬레이션 모델</li>
             </ul>
         </div>
-        <p class="mt-8 text-center text-[10px] text-slate-400 italic">"본 리포트는 공개 데이터와 시장 추정 모델을 결합한 전략 제언이며, 실제 내부 수치와는 차이가 있을 수 있습니다."</p>
+        <p class="mt-8 text-center text-[10px] text-slate-300 italic">본 리포트는 공개 데이터와 시장 추정치를 기획자 관점에서 재가공한 것으로 실제 내부 지표와 차이가 있을 수 있습니다.</p>
     </footer>
 </div>
 
 <script>
     // Tab Switching Logic
     function switchTab(id) {
-        // Hide all cards
-        document.querySelectorAll('.strategy-card').forEach(card => card.classList.remove('active'));
-        // Deactivate all buttons
+        document.querySelectorAll('.strategy-content').forEach(content => content.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.classList.remove('active', 'text-indigo-600');
+            btn.classList.remove('active');
             btn.classList.add('text-slate-400');
         });
 
-        // Activate selected
         document.getElementById(id).classList.add('active');
-        const activeBtn = document.getElementById('btn-' + id);
+        const activeBtn = document.getElementById('tab-' + id);
         activeBtn.classList.add('active');
         activeBtn.classList.remove('text-slate-400');
     }
 
-    // Toggle Info Logic
-    function toggleInfo(id) {
-        const info = document.getElementById(id);
-        const isHidden = info.classList.contains('hidden');
+    // Toggle Comparison Detail
+    function toggleDetail(id) {
+        const detail = document.getElementById(id);
+        const isHidden = detail.classList.contains('hidden');
         
         // Close others
-        document.querySelectorAll('[id^="info"]').forEach(el => el.classList.add('hidden'));
-        
+        document.querySelectorAll("[id^='detail']").forEach(d => d.classList.add('hidden'));
+
         if (isHidden) {
-            info.classList.remove('hidden');
-            info.classList.add('animate-fadeIn');
+            detail.classList.remove('hidden');
         }
     }
 
-    // Chart.js Implementations
+    // Charts Initialization
     document.addEventListener('DOMContentLoaded', () => {
-        // Shared Defaults
-        Chart.defaults.color = '#64748b';
+        Chart.defaults.color = '#94a3b8';
         Chart.defaults.font.family = 'Pretendard';
 
-        // Survival Chart
-        new Chart(document.getElementById('survivalChart'), {
+        // 1. Survival Curve
+        const survivalCtx = document.getElementById('survivalChart').getContext('2d');
+        const survivalGradient = survivalCtx.createLinearGradient(0, 0, 0, 300);
+        survivalGradient.addColorStop(0, 'rgba(79, 70, 229, 0.1)');
+        survivalGradient.addColorStop(1, 'rgba(79, 70, 229, 0)');
+
+        new Chart(survivalCtx, {
             type: 'line',
             data: {
                 labels: ['시작', '1개월', '2개월', '3개월', '4개월', '6개월'],
                 datasets: [{
                     label: '생존율(%)',
-                    data: [100, 65, 30, 18, 14, 12],
+                    data: [100, 68, 32, 18.5, 14, 12],
                     borderColor: '#4f46e5',
-                    backgroundColor: 'rgba(79, 70, 229, 0.05)',
+                    borderWidth: 3,
                     fill: true,
+                    backgroundColor: survivalGradient,
                     tension: 0.4,
                     pointBackgroundColor: '#fff',
                     pointBorderColor: '#4f46e5',
                     pointBorderWidth: 2,
-                    pointRadius: 4
+                    pointRadius: 5
                 }]
             },
             options: {
@@ -348,20 +355,20 @@
             }
         });
 
-        // Competency Radar Chart
+        // 2. Competency Radar
         new Chart(document.getElementById('competencyChart'), {
             type: 'radar',
             data: {
-                labels: ['수익성', '팬덤결속', '노출지원', '대중성', '인프라/기술'],
+                labels: ['수익성', '팬덤소통', '노출지원', '대중성', '인프라/기술'],
                 datasets: [{
                     label: 'SOOP',
-                    data: [9.5, 9, 8, 5, 8.5],
+                    data: [9.5, 9, 8.5, 5, 8.5],
                     borderColor: '#4f46e5',
                     backgroundColor: 'rgba(79, 70, 229, 0.1)',
                     pointBackgroundColor: '#4f46e5'
                 }, {
                     label: '치지직',
-                    data: [6.5, 6, 6, 9.5, 8],
+                    data: [6.5, 6, 6.5, 9.5, 8],
                     borderColor: '#10b981',
                     backgroundColor: 'rgba(16, 185, 129, 0.1)',
                     pointBackgroundColor: '#10b981'
@@ -385,10 +392,5 @@
         });
     });
 </script>
-
-<style>
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
-</style>
 </body>
 </html>
